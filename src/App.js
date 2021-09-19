@@ -27,7 +27,7 @@ console.log(urlRequest)
 
 
 this.setState({
-  locationResult : dirResult [0],
+  locationResult : dirResult.data[0],
   show : true
 })
 
@@ -50,7 +50,7 @@ this.setState({
         <p>Latitude : {this.state.locationResult.lat}</p>
         <p>longititude : {this.state.locationResult.lon}</p>
 
-        <img  src={`https://maps.locationiq.com/v3/staticmap?key=${process.env.REACT_APP_CITY_EXPLORER}&center=${this.state.locationResult.lat},this.state.locationResult.lon&zoom=10`}/>
+        <img  src={`https://maps.locationiq.com/v3/staticmap?key=${process.env.REACT_APP_CITY_EXPLORER}&center=${this.state.locationResult.lat},${this.state.locationResult.lon}&zoom=10`}/>
         </>
         }
       </div>
