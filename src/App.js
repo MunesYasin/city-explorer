@@ -2,6 +2,7 @@ import axios from 'axios';
 import React from 'react'
 import { Form } from 'react-bootstrap'
 
+
 class App extends React.Component{
   constructor(props){
     super(props);
@@ -35,7 +36,7 @@ this.setState({
 
 
 
-  render(){
+   render  (){
     return(
       <div>
         <h3>City Explorer App</h3>
@@ -50,7 +51,7 @@ this.setState({
         <p>Latitude : {this.state.locationResult.lat}</p>
         <p>longititude : {this.state.locationResult.lon}</p>
 
-        <img  src={`https://maps.locationiq.com/v3/staticmap?key=${process.env.REACT_APP_CITY_EXPLORER}&center=${this.state.locationResult.lat},${this.state.locationResult.lon}&zoom=10`}/>
+         <img  src= { `https://maps.locationiq.com/v3/staticmap?key=${process.env.REACT_APP_CITY_EXPLORER}&center=${this.state.locationResult.lat},${this.state.locationResult.lon}&zoom=10`} alt='img broken' />
         </>
         }
       </div>
