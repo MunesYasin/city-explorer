@@ -8,19 +8,19 @@ class App extends React.Component{
     super(props);
     this.state = {
         thePlace :'',
-        locationResult : {},
+        locationResult : [],
         show : false
     }
   }
 
   getDirection = async (e)=>{
-    e.preventDefault()
+   e.preventDefault()
   await this.setState({
   thePlace : e.target.place.value
 })
   
 
-   let urlRequest = `https://eu1.locationiq.com/v1/search.php?key=${process.env.REACT_APP_CITY_EXPLORER}&q=${this.state.thePlace}&format=json`
+   let urlRequest = `${process.env.REACT_APP_SERVER_LINK}/weather?cityName=${this.state.thePlace}`
 
 console.log(urlRequest)
   let dirResult = await axios.get(urlRequest)
@@ -28,7 +28,7 @@ console.log(urlRequest)
 
 
 this.setState({
-  locationResult : dirResult.data[0],
+  locationResult : dirResult.data,
   show : true
 })
 
@@ -48,10 +48,22 @@ this.setState({
         {this.state.show && 
         <>
         <p>City Name : {this.state.thePlace}</p>
-        <p>Latitude : {this.state.locationResult.lat}</p>
-        <p>longititude : {this.state.locationResult.lon}</p>
+  
 
-         <img  src= { `https://maps.locationiq.com/v3/staticmap?key=${process.env.REACT_APP_CITY_EXPLORER}&center=${this.state.locationResult.lat},${this.state.locationResult.lon}&zoom=10`} alt='img broken' />
+         <img  src= { `https://maps.locationiq.com/v3/staticmap?key=${process.env.REACT_APP_CITY_EXPLORER}&center=${this.state.locationResult[0].lat},${this.state.locationResult[0].lon}&zoom=10`} alt='img broken' />
+      
+      
+      <p>The Date : {this.state.locationResult[0].date}</p>
+      <p>The Weather Is : {this.state.locationResult[0].description}</p>
+      <p>The Date : {this.state.locationResult[1].date}</p>
+      <p>The Weather Is : {this.state.locationResult[1].description}</p>
+      <p>The Date : {this.state.locationResult[2].date}</p>
+      <p>The Weather Is : {this.state.locationResult[2].description}</p>
+      
+      
+      
+      
+      
         </>
         }
       </div>
