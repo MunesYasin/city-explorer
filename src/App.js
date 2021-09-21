@@ -28,6 +28,7 @@ console.log(urlRequest)
 
 
 this.setState({
+
   locationResult : dirResult.data,
   show : true
 })
@@ -48,7 +49,8 @@ this.setState({
         {this.state.show && 
         <>
         <p>City Name : {this.state.thePlace}</p>
-  
+        <p>The lat of {this.state.thePlace} is : {this.state.locationResult[0].lat} </p>
+        <p>The lon of {this.state.thePlace} is : {this.state.locationResult[0].lon} </p>
 
          <img  src= { `https://maps.locationiq.com/v3/staticmap?key=${process.env.REACT_APP_CITY_EXPLORER}&center=${this.state.locationResult[0].lat},${this.state.locationResult[0].lon}&zoom=10`} alt='img broken' />
       
