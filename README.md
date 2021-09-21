@@ -17,3 +17,12 @@ This application allow user to input the name of conutry and he will see its map
 The languages we used in our app is javascript ,HTML and CSS 
 The libraries we used in our app is React,Bootstrap and axios,
 
+# Time estimate
+
+Estimate of time needed to complete this lab: 2 houres_
+
+Start time: 4 pm_
+
+Finish time: 7.5 pm_
+
+Actual time needed to complete: 3.5 houres___
