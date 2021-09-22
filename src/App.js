@@ -1,75 +1,46 @@
 import axios from 'axios';
 import React from 'react'
 import { Form } from 'react-bootstrap'
+import FormM from './component/FormM.js'
+
+
 
 
 class App extends React.Component{
   constructor(props){
     super(props);
     this.state = {
-        thePlace :'',
-        locationResult : [],
-        show : false
+      show : false ,
+      thePlace :'',
+      
     }
-  }
-
-  getDirection = async (e)=>{
-   e.preventDefault()
-  await this.setState({
-  thePlace : e.target.place.value
-})
+    }
   
 
-   let urlRequest = `${process.env.REACT_APP_SERVER_LINK}/weather?cityName=${this.state.thePlace}`
+    getDetails = async (e)=>{
+      e.preventDefault()
+     await this.setState({
+     thePlace : e.target.cityName.value,
 
-console.log(urlRequest)
-  let dirResult = await axios.get(urlRequest)
-  console.log(dirResult)
-
-
-this.setState({
-
-  locationResult : dirResult.data,
-  show : true
-})
-
-}
-
-
-
-   render  (){
+     
+     show : true
+   })
+   }
+  
+  
+  
+  render(){
     return(
       <div>
         <h3>City Explorer App</h3>
-        <Form onSubmit={this.getDirection}>
-        <input type='text' name='place'/>
-        <input type='submit' value='get direction'/>
+        <FormM detalis={this.getDetails} cityName={this.state.thePlace} show={this.state.show}/>
+        </div>
 
-        </Form>
-        {this.state.show && 
-        <>
-        <p>City Name : {this.state.thePlace}</p>
-        <p>The lat of {this.state.thePlace} is : {this.state.locationResult[0].lat} </p>
-        <p>The lon of {this.state.thePlace} is : {this.state.locationResult[0].lon} </p>
 
-         <img  src= { `https://maps.locationiq.com/v3/staticmap?key=${process.env.REACT_APP_CITY_EXPLORER}&center=${this.state.locationResult[0].lat},${this.state.locationResult[0].lon}&zoom=10`} alt='img broken' />
-      
-      
-      <p>The Date : {this.state.locationResult[0].date}</p>
-      <p>The Weather Is : {this.state.locationResult[0].description}</p>
-      <p>The Date : {this.state.locationResult[1].date}</p>
-      <p>The Weather Is : {this.state.locationResult[1].description}</p>
-      <p>The Date : {this.state.locationResult[2].date}</p>
-      <p>The Weather Is : {this.state.locationResult[2].description}</p>
-      
-      
-      
-      
-      
-        </>
-        }
-      </div>
-    )
+  )}
+  
+    
+  
+  
   }
-}
-export default App
+  export default App
