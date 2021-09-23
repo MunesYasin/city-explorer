@@ -1,71 +1,43 @@
-import axios from 'axios';
+
 import React from 'react'
-import { Form } from 'react-bootstrap'
+
 
 
 class Movie extends React.Component{
-    constructor(props){
-        super(props);
-        this.state ={
-          cityName :'',
-          movieResult:[]
-        }
-      
- 
-
-
-  
-        
-         this.setState({
-            
-          cityName : this.props.cityName
-  })
-         
-        let movieUrl =`${process.env.REACT_APP_SERVER_LINK}/movie?cityName=${this.state.cityName}`
-      console.log(movieUrl)
-        axios.get(movieUrl).then((movResult)=>{
-        console.log(movResult)
-      
-      
-         this.setState({
-      
-         
-          movieResult : movResult.data,
-        
-        })
-      }
-        )
-         }
-      
-      
-
+   
 
       render(){
        
-        for (let i =0 ;i<this.state.movieResult.length;i++){
-        return(
+         
+          return(
           
 <>
 
 
-          <p>{this.state.movieResult.title}</p>
-        <img src={`${this.state.movieResult.imageUrl}`}/>
-        
+     {this.props.movie.map(item =>{
+
+
+        return <>
+
+
+           <p>😃The movie's title is : {item.title}</p>
+          <p> ⭐The movie's averageVote is : {item.averageVotes}</p>
+          <p> 📅 The movie's releasedOn is : {item.releasedOn}</p>
 
 
 
-
-
-
+        <img src={`${item.imageUrl}`} alt='😭THERE IS NO COVER FOR THIS BOOK😭'/>
 
 </>
+     }
+      )}
 
 
-        )
-      }
+        
+        
 
-
-
+</>
+)
     }
 
     }

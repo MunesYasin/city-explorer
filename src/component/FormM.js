@@ -18,7 +18,18 @@ return(
 
     {this.props.show && 
 
-<Weather cityName={this.props.cityName}/>
+<Weather
+key={2}
+cityName={this.props.cityName}
+
+weather = {this.props.weather}
+        movie = {this.props.movie}
+
+
+
+
+
+/>
 }
     
     </>
